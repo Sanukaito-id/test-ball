@@ -6,8 +6,8 @@ from ultralytics import YOLO
 
 # ページの設定
 st.set_page_config(page_title="虫検出カメラ", page_icon="🪲")
-st.title("🪲 虫検出 Webカメラアプリ")
-st.write("下のカメラで虫を撮影すると、AIが自動で検出します。")
+st.title("🪲 虫検出(予定) Webカメラアプリ")
+st.write("下のカメラで撮影すると、現在はAIがボールを自動で検出します。")
 
 # 1. モデルの読み込み（初回のみロードしてキャッシュ）
 @st.cache_resource
