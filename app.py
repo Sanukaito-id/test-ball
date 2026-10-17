@@ -2,18 +2,18 @@ import cv2
 import numpy as np
 import streamlit as st
 from PIL import Image
-from ultralytics import YOLO 
+from ultralytics import YOLO
 
 # ページの設定
 st.set_page_config(page_title="虫検出カメラ", page_icon="🪲")
-st.title("🪲 虫検出(予定) Webカメラアプリ")
-st.write("下のカメラで撮影すると、現在はAIが認識できる物体を自動で検出します。")
+st.title("🪲 虫検出 Webカメラアプリ")
+st.write("下のカメラで虫を撮影すると、AIが自動で検出します。")
 
 # 1. モデルの読み込み（初回のみロードしてキャッシュ）
 @st.cache_resource
 def load_model():
     # 自分の虫検出モデルがある場合は 'best.pt' に変更してください
-    return YOLO('yolov8n.pt')
+    return YOLO('best.pt')
 
 model = load_model()
 
@@ -25,7 +25,7 @@ if camera_image is not None:
     # 撮影された画像をPIL形式で開く
     image = Image.open(camera_image)
     
-    with st.spinner("AIが物体を検出中..."):
+    with st.spinner("AIが虫を検出中..."):
         # PIL画像をNumPy配列（OpenCV形式）に変換
         img_array = np.array(image)
         
@@ -45,6 +45,6 @@ if camera_image is not None:
         # 検出されたオブジェクト（虫）の数を表示
         num_detected = len(results[0].boxes)
         if num_detected > 0:
-            st.success(f"{num_detected} 個の対象を検出しました！")
+            st.success(f"{num_detected} 匹の対象を検出しました！")
         else:
             st.info("対象は検出されませんでした。")
