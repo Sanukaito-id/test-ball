@@ -10,10 +10,10 @@ st.title("🪲 虫検出 Webカメラアプリ")
 st.write("下のカメラで虫を撮影すると、AIが自動で検出します。")
 
 # 1. モデルの読み込み（初回のみロードしてキャッシュ）
+# app.py のモデル読み込み部
 @st.cache_resource
 def load_model():
-    # 自分の虫検出モデルがある場合は 'best.pt' に変更してください
-    return YOLO('best.pt')
+    return YOLO('yolov8n.pt')  # best.pt ではなく標準モデルを指定
 
 model = load_model()
 
